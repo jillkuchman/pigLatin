@@ -3,17 +3,37 @@ var pigLatin = function(input) {
     var vowels = ["a", "e", "i", "o", "u"];
     var output;
     var completed_word = false;
+    var exception = ["q", "u"];
+
+
+    split_input.forEach(function(letter) {
+        if (letter === "q") {
+            var q_index = split_input.indexOf(letter);
+            var u_index = q_index + 1;
+            if(!completed_word){
+                if (split_input[u_index] === "u") {
+                    var letter_index = split_input.indexOf(letter);
+                    var consonant_array = split_input.slice(0, (u_index+1));
+                    var input_length = input.length;
+                    var vowel_array = split_input.slice((u_index+1), input_length);
+                    output = vowel_array.join('') + consonant_array.join('') + "ay";
+                    completed_word = true;
+                    console.log(output);
+                    return output;
+                }
+            }
+        }
+    });
 
     split_input.forEach(function(letter) {
         vowels.forEach(function(vowel) {
             if (!completed_word) {
                 if(letter === vowel) {
                     var letter_index = split_input.indexOf(letter);
-                    var consonant_array = split_input.slice(0,letter_index);
+                    var consonant_array = split_input.slice(0, letter_index);
                     var input_length = input.length;
                     var vowel_array = split_input.slice(letter_index, input_length);
                     output = vowel_array.join('') + consonant_array.join('') + "ay";
-                    console.log(output);
                     completed_word = true;
                     return output;
                 }
