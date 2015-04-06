@@ -12,4 +12,9 @@ describe('pigLatin', function() {
         expect(pigLatin("quest")).to.equal("estquay");
     });
 
+    it("returns the word with the vowel sound at the beginning, followed by the starting consonants followed by -ay, even if the word starts with y", function() {
+        expect(pigLatin("qill")).to.equal("illqay");
+    });
+
+
 });
